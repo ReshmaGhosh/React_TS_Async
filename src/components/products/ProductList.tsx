@@ -5,20 +5,40 @@ type Product = {
   id: number;
   title: string;
   price: number;
+  description: string;
+  images: string[];
+  category: {
+    id: number;
+    name: string;
+    image: string;
+  };
 };
+
+const url = "https:api.escuelajs.co/api/v1/products";
 
 export default function ProductList(): JSX.Element {
   const [products, setProducts] = useState<Product[]>([]);
 
-  useEffect(() => {
-    fetch("https://api.escuelajs.co/api/v1/products")
+  // useEffect(() => {
+  //   fetch("https://api.escuelajs.co/api/v1/products")
+  //     .then((response) => response.json())
+  //     .then((data: Product[]) => {
+  //       setProducts(data);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error fetching", error);
+  //     });
+  // }, []);
+  function fetchData() {
+    fetch(url)
       .then((response) => response.json())
-      .then((data: Product[]) => {
-        setProducts(data);
-      })
-      .catch((error) => {
-        console.error("Error fetching", error);
-      });
+      .then((data) => setProducts(data))
+      .catch((error) => console.log(error));
+  }
+  console.log(products);
+
+  useEffect(() => {
+    fetchData();
   }, []);
   return (
     <div>
