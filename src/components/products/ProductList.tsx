@@ -1,4 +1,3 @@
-import { error } from "console";
 import React, { useEffect, useState } from "react";
 
 type Product = {
@@ -19,16 +18,6 @@ const url = "https:api.escuelajs.co/api/v1/products";
 export default function ProductList(): JSX.Element {
   const [products, setProducts] = useState<Product[]>([]);
 
-  // useEffect(() => {
-  //   fetch("https://api.escuelajs.co/api/v1/products")
-  //     .then((response) => response.json())
-  //     .then((data: Product[]) => {
-  //       setProducts(data);
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error fetching", error);
-  //     });
-  // }, []);
   function fetchData() {
     fetch(url)
       .then((response) => response.json())
